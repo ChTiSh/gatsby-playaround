@@ -7,6 +7,10 @@
 /**
  * @type {import('gatsby').GatsbySSR['onRenderBody']}
  */
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: `en` })
-}
+import React from 'react';
+import { ServerStyleSheets } from '@mui/styles';
+
+export const onRenderBody = ({ setHeadComponents, setBodyAttributes }, pluginOptions) => {
+  const sheets = new ServerStyleSheets();
+  setHeadComponents([sheets.getStyleElement()]);
+};
